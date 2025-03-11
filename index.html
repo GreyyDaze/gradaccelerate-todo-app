@@ -8,44 +8,46 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="bg-[var(--background)] flex items-center justify-center min-h-screen p-4">
-    <!-- Todo App Container -->
-    <div class="w-full max-w-3xl bg-white shadow-lg rounded-lg p-5 md:p-6">
-      <!-- App Title -->
-      <h2 class="text-lg font-bold text-[var(--text-dark)] mb-2 flex items-center justify-center gap-1.5">
-        <img src="icons/todo.svg" alt="Todo Icon" class="w-6 md:w-8" />
-        <span>Todo App</span>
-      </h2>
-      <p class="text-center text-gray-500 mb-4 text-sm md:text-base">
-        What do you want to achieve today?
-      </p>
+    <main class="w-full max-w-3xl bg-white shadow-lg rounded-lg p-5 md:p-6">
+      
+      <!-- App Header -->
+      <header class="text-center mb-4">
+        <h1 class="text-lg font-bold text-[var(--text-dark)] flex items-center justify-center gap-1.5">
+          <img src="icons/todo.svg" alt="Todo Icon" class="w-6 md:w-8" />
+          <span>Todo App</span>
+        </h1>
+        <p class="text-gray-500 text-sm md:text-base">
+          What do you want to achieve today?
+        </p>
+      </header>
 
-      <!-- Input Section -->
-      <div class="flex gap-3">
-        <input type="text" placeholder="What's on your mind?" class="flex-1 px-3 py-2.5 border border-[var(--accent)] rounded-md focus:ring-2 focus:ring-[var(--primary)] text-sm md:text-base" />
-        <button class="bg-[var(--primary)] text-white px-3 py-2 md:px-4 md:py-2.5 rounded-lg hover:bg-blue-700 transition text-sm">
-          Add Task
-        </button>
-      </div>
+      <!-- Task Input Section -->
+      <section>
+        <form class="flex gap-3">
+          <label for="task-input" class="sr-only">Add a new task</label>
+          <input id="task-input" type="text" placeholder="What's on your mind?" 
+            class="flex-1 px-3 py-2.5 border border-[var(--accent)] rounded-md focus:ring-2 focus:ring-[var(--primary)] text-sm md:text-base" />
+          <button type="submit" class="bg-[var(--primary)] text-white px-3 py-2 md:px-4 md:py-2.5 rounded-lg hover:bg-blue-700 transition text-sm">
+            Add Task
+          </button>
+        </form>
+      </section>
 
-      <!-- Task List Container -->
-      <div class="mt-10 bg-white p-4 md:p-4.5 rounded-lg border border-[var(--primary)]">
-        <h3 class="text-base font-semibold text-[var(--text-dark)] mb-3">
-          Tasks
-        </h3>
+      <!-- Task List Section -->
+      <section class="mt-10 bg-white p-4 md:p-4.5 rounded-lg border border-[var(--primary)]">
+        <h2 class="text-base font-semibold text-[var(--text-dark)] mb-3">Tasks</h2>
 
         <ul class="space-y-3">
-          <!-- Task Card -->
+          <!-- Task Item -->
           <li class="border border-[var(--accent)] bg-[var(--background)] p-4 md:p-5 rounded-md flex justify-between items-center">
             <span class="text-sm md:text-base text-[var(--text-dark)]">
               Finish UI design improvements
             </span>
             <div class="flex gap-3">
-              <!-- Edit Icon -->
-              <button>
+              <button aria-label="Edit task">
                 <img src="icons/edit.svg" alt="Edit" class="w-5 md:w-6" />
               </button>
-              <!-- Delete Icon -->
-              <button>
+              <button aria-label="Delete task">
                 <img src="icons/delete.svg" alt="Delete" class="w-5 md:w-6" />
               </button>
             </div>
@@ -56,18 +58,16 @@
               Plan next week's goals
             </span>
             <div class="flex gap-3">
-              <!-- Edit Icon -->
-              <button>
+              <button aria-label="Edit task">
                 <img src="icons/edit.svg" alt="Edit" class="w-5 md:w-6" />
               </button>
-              <!-- Delete Icon -->
-              <button>
+              <button aria-label="Delete task">
                 <img src="icons/delete.svg" alt="Delete" class="w-5 md:w-6" />
               </button>
             </div>
           </li>
         </ul>
-      </div>
-    </div>
+      </section>
+    </main>
   </body>
 </html>
