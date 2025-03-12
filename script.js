@@ -8,32 +8,44 @@ const notasks = document.getElementById("no-tasks");
 let taskListArray = JSON.parse(localStorage.getItem("task-list"))
   ? JSON.parse(localStorage.getItem("task-list"))
   : [];
+let taskItem, taskDescription;
 
 console.log("taskListContainer", taskListContainer, notasks);
 // add task from input to local storage
 addBtn.addEventListener("click", (event) => {
   event.preventDefault();
-
   const task = taskInput.value;
 
-  if (task && !taskListArray.includes(task)) {
-    taskListArray.push(task);
+  if (addBtn.textContent === "Add") {
+    if (task && !taskListArray.includes(task)) {
+      taskListArray.push(task);
+      localStorage.setItem("task-list", JSON.stringify(taskListArray));
+      taskInput.value = "";
+    }
+    taskListHtml();
+  } else if (addBtn.textContent === "Update") {
+    let taskIndex = taskListArray.indexOf(taskDescription.textContent);
+    taskDescription.textContent = taskInput.value;
+    taskListArray[taskIndex] = taskDescription.textContent;
     localStorage.setItem("task-list", JSON.stringify(taskListArray));
-    taskInput.value = "";
+    window.location.reload();
   }
-  taskListHtml();
 });
 
-// for delete event add listener on parent
+// for delete event and edit event add listener on parent
 taskListContainer.addEventListener("click", (event) => {
   if (event.target.alt === "Delete") {
-    console.log("here");
-    let taskItem = event.target.closest(".task-list-item");
-    let taskDescription = taskItem.querySelector(".task-desc");
+    taskItem = event.target.closest(".task-list-item");
+    taskDescription = taskItem.querySelector(".task-desc");
     let taskIndex = taskListArray.indexOf(taskDescription.textContent);
     taskListArray.splice(taskIndex, 1);
     localStorage.setItem("task-list", JSON.stringify(taskListArray));
     window.location.reload();
+  } else if (event.target.alt === "Edit") {
+    taskItem = event.target.closest(".task-list-item");
+    taskDescription = taskItem.querySelector(".task-desc");
+    taskInput.value = taskDescription.textContent;
+    addBtn.textContent = "Update";
   }
 });
 
