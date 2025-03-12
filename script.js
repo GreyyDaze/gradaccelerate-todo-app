@@ -28,6 +28,7 @@ addBtn.addEventListener("click", (event) => {
     taskListArray[taskIndex] = taskDescription.textContent;
     localStorage.setItem("task-list", JSON.stringify(taskListArray));
     taskInput.value = "";
+    window.location.reload();
   }
 });
 
