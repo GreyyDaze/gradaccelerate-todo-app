@@ -10,20 +10,19 @@ let taskListArray = JSON.parse(localStorage.getItem("task-list"))
   : [];
 let taskItem, taskDescription;
 
-console.log("taskListContainer", taskListContainer, notasks);
 // add task from input to local storage
 addBtn.addEventListener("click", (event) => {
   event.preventDefault();
   const task = taskInput.value;
 
-  if (addBtn.textContent === "Add") {
+  if (addBtn.textContent.trim() === "Add Task") {
     if (task && !taskListArray.includes(task)) {
       taskListArray.push(task);
       localStorage.setItem("task-list", JSON.stringify(taskListArray));
       taskInput.value = "";
     }
     taskListHtml();
-  } else if (addBtn.textContent === "Update") {
+  } else if (addBtn.textContent === "Update Task") {
     let taskIndex = taskListArray.indexOf(taskDescription.textContent);
     taskDescription.textContent = taskInput.value;
     taskListArray[taskIndex] = taskDescription.textContent;
@@ -45,7 +44,8 @@ taskListContainer.addEventListener("click", (event) => {
     taskItem = event.target.closest(".task-list-item");
     taskDescription = taskItem.querySelector(".task-desc");
     taskInput.value = taskDescription.textContent;
-    addBtn.textContent = "Update";
+    taskInput.focus();
+    addBtn.textContent = "Update Task";
   }
 });
 
@@ -57,7 +57,6 @@ function taskListHtml() {
   const taskList = JSON.parse(localStorage.getItem("task-list"));
   taskListContainer.innerHTML = "";
 
-  console.log("taskList", taskList);
   if (taskList.length > 0) {
     taskList.forEach((task, index) => {
       const nextTaskElement = taskListItem.cloneNode(true);
